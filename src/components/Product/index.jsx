@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import productsApi from "apis/products";
-import { Typography, Spinner } from "neetoui";
+import { Typography } from "neetoui";
 import { isNotNil, append } from "ramda";
 import Carousel from "./Carousel";
 import { Header, PageNotFound, PageLoader } from "components/commons";
 
 const Product = () => {
   const { slug } = useParams();
-  const history = useHistory();
   const [product, setProduct] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -23,20 +22,22 @@ const Product = () => {
       setIsLoading(false);
     }
   };
-  if (isError) return <PageNotFound />;
-
-  useEffect(() => {
+   useEffect(() => {
     fetchProduct();
-  }, []);
-  console.log(product);
-  const { name, description, mrp, offerPrice, imageUrls, imageUrl } = product;
-  const totalDiscounts = mrp - offerPrice;
-  const discountPercentage = ((totalDiscounts / mrp) * 100).toFixed(1);
-
+  }, [slug]);
+  
   if (isLoading) {
     return <PageLoader />;
   }
+  
+  if (isError) {
+    return <PageNotFound />;
+  }
 
+  const { name, description, mrp, offerPrice, imageUrls, imageUrl } = product;
+  const totalDiscounts = mrp - offerPrice;
+  const discountPercentage = ((totalDiscounts / mrp) * 100).toFixed(1);
+  
   return (
     <>
     <Header title={name} />

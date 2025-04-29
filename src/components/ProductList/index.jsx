@@ -1,8 +1,7 @@
-import { Typography,Spinner } from "neetoui";
 import productsApi from "apis/products";
 import { useState,useEffect } from "react";
 import ProductListItem from "./ProductListItems";
-import { Header, PageNotFound, PageLoader } from "components/commons";
+import { Header , PageLoader } from "components/commons";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
