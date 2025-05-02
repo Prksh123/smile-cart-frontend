@@ -1,5 +1,6 @@
 import productsApi from "apis/products";
 import { useState,useEffect } from "react";
+import useDebounce from "hooks/useDebounce";
 import ProductListItem from "./ProductListItems";
 import { Header , PageLoader } from "components/commons";
 import { Input } from "neetoui";
@@ -11,10 +12,13 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchKey, setSearchKey] = useState("");
+  const debouncedSearchKey = useDebounce(searchKey);
 
   const fetchProducts = async () => {
     try {
-      const data = await productsApi.fetch({ searchTerm: searchKey });
+      const data = await productsApi.fetch({
+        searchTerm: debouncedSearchKey,
+      });
       setProducts(data.products);
     } catch (error) {
       console.log("An error occurred:", error);
@@ -24,7 +28,7 @@ const ProductList = () => {
   };
   useEffect(() => {
     fetchProducts();
-  }, [searchKey]);
+  }, [debouncedSearchKey]);
 
   if (isLoading) {
    return <PageLoader/>
