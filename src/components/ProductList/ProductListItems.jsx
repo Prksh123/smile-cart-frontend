@@ -6,7 +6,7 @@ import { Input } from "neetoui";
 import { Search } from "neetoicons";
 import AddToCart from "components/commons/AddToCart";
 
-const ProductListItem = ({ imageUrl, name, offerPrice ,slug}) => (
+const ProductListItem = ({ imageUrl, name, offerPrice ,slug,availableQuantity,}) => (
     <Link
     className="neeto-ui-border-black neeto-ui-rounded-xl flex w-48 flex-col items-center justify-between border p-4"
     to={buildUrl(routes.products.show, { slug })}
@@ -16,7 +16,7 @@ const ProductListItem = ({ imageUrl, name, offerPrice ,slug}) => (
       {name}
     </Typography>
     <Typography>${offerPrice}</Typography>
-    <AddToCart { ...{slug} } />
+    <AddToCart { ...{availableQuantity,slug} } />
   </Link>
 );
 
