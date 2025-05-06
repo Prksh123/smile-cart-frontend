@@ -4,8 +4,10 @@ import routes from "routes";
 import { buildUrl } from "utils/url";
 import { Input } from "neetoui";
 import { Search } from "neetoicons";
+import AddToCart from "components/AddToCart";
 
-const ProductListItem = ({ imageUrl, name, offerPrice , slug}) => (
+const ProductListItem = ({ imageUrl, name, offerPrice ,isInCart,
+  toggleIsInCart, slug}) => (
     <Link
     className="neeto-ui-border-black neeto-ui-rounded-xl flex w-48 flex-col items-center justify-between border p-4"
     to={buildUrl(routes.products.show, { slug })}
@@ -15,6 +17,7 @@ const ProductListItem = ({ imageUrl, name, offerPrice , slug}) => (
       {name}
     </Typography>
     <Typography>${offerPrice}</Typography>
+    <AddToCart {...{ isInCart, toggleIsInCart }} />
   </Link>
 );
 
