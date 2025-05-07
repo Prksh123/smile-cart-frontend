@@ -1,5 +1,5 @@
 import React from "react";
-import "./common/i18n";
+import "./components/commons/i18n"
 import initializeAxios from "apis/axios";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
