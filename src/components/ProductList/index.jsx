@@ -16,6 +16,7 @@ import { DEFAULT_PAGE_SIZE, DEFAULT_PAGE_INDEX } from './constants';
 import { useHistory } from "react-router-dom";
 import { buildUrl } from "utils/url";
 import useFuncDebounce from "hooks/useFuncDebounce";
+import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 
 const ProductList = () => {
   // const [products, setProducts] = useState([]);

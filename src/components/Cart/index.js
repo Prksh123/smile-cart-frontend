@@ -7,50 +7,49 @@ import Header from "components/commons/Header";
 import { keys } from "ramda";
 import useCartItemsStore from "stores/useCartItemsStore";
 import { shallow } from "zustand/shallow";
-import { NoData } from "neetoui";
+import { NoData,Toastr  } from "neetoui";
 import { cartTotalOf } from "components/utils";
 import {MRP , OFFER_PRICE} from "components/constants"
 import PriceCard from "./PriceCard";
 import i18n from "i18next";
 import withTitle from "utils/withTitle";
+import { useFetchCartProducts } from "hooks/reactQuery/useProductsApi";
 
 const Cart = () => {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [products, setProducts] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
   const { cartItems, setSelectedQuantity } = useCartItemsStore();
-
   const slugs = keys(cartItems);
+  const { data: products = [], isLoading } = useFetchCartProducts(slugs);
 
-  const fetchCartProducts = async () => {
-    try {
-      const responses = await Promise.all(
-        slugs.map(slug => productsApi.show(slug))
-      );
-      setProducts(responses);
-      responses.forEach(({ availableQuantity, name, slug }) => {
-        if (availableQuantity >= cartItems[slug]) return;
 
-        setSelectedQuantity(slug, availableQuantity);
-        if (availableQuantity === 0) {
-          Toastr.error(
-            `${name} is no longer available and has been removed from cart`,
-            {
-              autoClose: 2000,
-            }
-          );
-        }
-      });
-      console.log(responses);
-    } catch (error) {
-      console.log("An error occurred:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  // const fetchCartProducts = async () => {
+  //   try {
+  //     const responses = await Promise.all(
+  //       slugs.map(slug => productsApi.show(slug))
+  //     );
+  //     setProducts(responses);
+  //     responses.forEach(({ availableQuantity, name, slug }) => {
+  //       if (availableQuantity >= cartItems[slug]) return;
 
-  useEffect(() => {
-    fetchCartProducts();
-  }, [cartItems]);
+  //     setSelectedQuantity(slug, availableQuantity);
+  //     if (availableQuantity === 0) {
+  //       Toastr.error(t("product.error.removedFromCart", { name }), {
+  //         autoClose: 2000,
+  //       });
+  //     }
+  //     });
+  //     console.log(responses);
+  //   } catch (error) {
+  //     console.log("An error occurred:", error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchCartProducts();
+  // }, [cartItems]);
 
 const totalMrp = cartTotalOf(products, MRP);
 const totalOfferPrice = cartTotalOf(products, OFFER_PRICE);
