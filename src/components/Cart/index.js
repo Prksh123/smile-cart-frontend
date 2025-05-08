@@ -11,6 +11,8 @@ import { NoData } from "neetoui";
 import { cartTotalOf } from "components/utils";
 import {MRP , OFFER_PRICE} from "components/constants"
 import PriceCard from "./PriceCard";
+import i18n from "i18next";
+import withTitle from "utils/withTitle";
 
 const Cart = () => {
   const [products, setProducts] = useState([]);
@@ -85,4 +87,4 @@ const totalOfferPrice = cartTotalOf(products, OFFER_PRICE);
   );
 };
 
-export default Cart;
+export default withTitle(Cart, i18n.t("cart.title"));
