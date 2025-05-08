@@ -8,27 +8,29 @@ import { Header, PageNotFound, PageLoader } from "components/commons";
 import useSelectedQuantity from "hooks/useSelectedQuantity";
 import AddToCart from "components/commons/AddToCart";
 import routes from "routes";
+import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 
 const Product = () => {
   const { slug } = useParams();
-  const [product, setProduct] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  // const [product, setProduct] = useState({});
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [isError, setIsError] = useState(false);
   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
+  const { data: product = {}, isLoading, isError } = useShowProduct(slug);
 
-  const fetchProduct = async () => {
-    try {
-      const product = await productsApi.show(slug);
-      setProduct(product);
-    } catch (error) {
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-   useEffect(() => {
-    fetchProduct();
-  }, [slug]);
+  // const fetchProduct = async () => {
+  //   try {
+  //     const product = await productsApi.show(slug);
+  //     setProduct(product);
+  //   } catch (error) {
+  //     setIsError(true);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+  //  useEffect(() => {
+  //   fetchProduct();
+  // }, [slug]);
 
   if (isLoading) {
     return <PageLoader />;
@@ -49,7 +51,7 @@ const Product = () => {
         <div className="w-2/5">
           <div className="flex justify-center gap-16">
             {isNotNil(imageUrls) ? (
-              <Carousel imageUrls={append(imageUrl, imageUrls)} title={name} />
+              <Carousel />
             ) : (
               <img alt={name} className="w-48" src={imageUrl} />
             )}

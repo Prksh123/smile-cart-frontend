@@ -7,10 +7,14 @@ import TooltipWrapper from "./TooltipWrapper";
 import { Input } from "neetoui";
 import { Toastr } from "neetoui";
 import { useRef } from "react";
+import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 
-const ProductQuantity = ({ slug ,availableQuantity}) => {
+const ProductQuantity = ({ slug}) => {
     const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
     const parsedSelectedQuantity = parseInt(selectedQuantity) || 0;
+    const { data: product = {} } = useShowProduct(slug);
+    const { availableQuantity } = product;
+
     const isNotValidQuantity = parsedSelectedQuantity >= availableQuantity;
     const VALID_COUNT_REGEX = /^(?:\d*|)$/;
     const countInputFocus = useRef(null);

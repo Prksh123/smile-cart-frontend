@@ -7,15 +7,19 @@ import { ToastContainer } from "react-toastify";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import { QueryClientProvider } from "react-query";
+import queryClient from "utils/queryClient";
 
 initializeAxios();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
     <BrowserRouter>
     <ToastContainer />
       <App />
     </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

@@ -8,30 +8,34 @@ import { Search } from "neetoicons";
 import { NoData } from "neetoui";
 import { isEmpty } from "ramda";
 import { without } from "ramda";
+import { useFetchProducts } from "hooks/reactQuery/useProductsApi";
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [products, setProducts] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
   const [searchKey, setSearchKey] = useState("");
   const debouncedSearchKey = useDebounce(searchKey);
+  const { data: { products = [] } = {}, isLoading } = useFetchProducts({
+    searchTerm: debouncedSearchKey,
+  });
 
 
-  const fetchProducts = async () => {
-    try {
-      const data = await productsApi.fetch({
-        searchTerm: debouncedSearchKey,
-      });
-      setProducts(data.products);
-      console.log(products);
-    } catch (error) {
-      console.log("An error occurred:", error);
-    }finally{
-      setIsLoading(false);
-    }
-  };
-  useEffect(() => {
-    fetchProducts();
-  }, [debouncedSearchKey]);
+  // const fetchProducts = async () => {
+  //   try {
+  //     const data = await productsApi.fetch({
+  //       searchTerm: debouncedSearchKey,
+  //     });
+  //     setProducts(data.products);
+  //     console.log(products);
+  //   } catch (error) {
+  //     console.log("An error occurred:", error);
+  //   }finally{
+  //     setIsLoading(false);
+  //   }
+  // };
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, [debouncedSearchKey]);
 
   if (isLoading) {
    return <PageLoader/>
