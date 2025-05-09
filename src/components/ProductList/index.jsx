@@ -42,7 +42,7 @@ const ProductList = () => {
         mergeLeft({ page, pageSize: DEFAULT_PAGE_SIZE }, queryParams)
       )
     );
-    const updateQueryParams = useFuncDebounce(value => {
+  const updateQueryParams = useFuncDebounce(value => {
       const params = {
         page: DEFAULT_PAGE_INDEX,
         pageSize: DEFAULT_PAGE_SIZE,
