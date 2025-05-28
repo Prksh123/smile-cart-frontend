@@ -40,3 +40,5 @@ export const CHECKOUT_FORM_INITIAL_VALUES = {
     .required(t("validations.stateRequired")),
     zipCode: yup.number().required(t("validations.zipCodeRequired")),
 });
+
+export const CHECKOUT_LOCAL_STORAGE_KEY = "checkoutUserDetails";
