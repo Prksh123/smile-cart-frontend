@@ -6,12 +6,12 @@ import { useHistory } from "react-router-dom";
 import withTitle from "utils/withTitle";
 import { PageLoader } from "components/commons";
 import { useFetchCountries } from "hooks/reactQuery/useCheckoutApi";
-
+import {
+  CHECKOUT_FORM_INITIAL_VALUES,
+  CHECKOUT_FORM_VALIDATION_SCHEMA,
+} from "./constants";
 import { Form as NeetoUIForm } from "neetoui/formik";
 
-import {
-  CHECKOUT_FORM_INITIAL_VALUES
-} from "./constants";
 import Form from "./Form";
 
 const Checkout = () => {
@@ -32,6 +32,7 @@ const Checkout = () => {
     formProps={{ noValidate: true }}
     formikProps={{
       initialValues: CHECKOUT_FORM_INITIAL_VALUES,
+      validationSchema: CHECKOUT_FORM_VALIDATION_SCHEMA
     }}
   >
     <div className="flex space-x-4">
