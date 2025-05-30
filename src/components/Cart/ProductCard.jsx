@@ -6,6 +6,7 @@ import { NoData } from "neetoui";
 import { Delete } from "neetoicons";
 import { prop } from "ramda";
 import useCartItemsStore from "stores/useCartItemsStore";
+import { memo } from "react";
 
 const ProductCard = ({
   slug,
@@ -56,4 +57,4 @@ const ProductCard = ({
   </div>
 )};
 
-export default ProductCard;
+export default memo(ProductCard);

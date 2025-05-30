@@ -5,6 +5,7 @@ import { append } from "ramda";
 import classNames from "classnames";
 import { Left, Right } from "neetoicons";
 import { Button } from "neetoui";
+import { memo } from "react";
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -82,4 +83,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default memo(Carousel);

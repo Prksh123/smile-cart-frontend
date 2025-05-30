@@ -5,6 +5,7 @@ import { buildUrl } from "utils/url";
 import { Input } from "neetoui";
 import { Search } from "neetoicons";
 import AddToCart from "components/commons/AddToCart";
+import { memo } from "react";
 
 const ProductListItem = ({ imageUrl, name, offerPrice ,slug,availableQuantity,}) => (
     <Link
@@ -20,4 +21,4 @@ const ProductListItem = ({ imageUrl, name, offerPrice ,slug,availableQuantity,})
   </Link>
 );
 
-export default ProductListItem;
+export default memo(ProductListItem);

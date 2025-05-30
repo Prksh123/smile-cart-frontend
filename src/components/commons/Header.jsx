@@ -8,6 +8,7 @@ import routes from "routes";
 // import CartItemsContext from "src/contexts/CartItemsContext";
 import useCartItemsStore from "stores/useCartItemsStore";
 import { keys } from "ramda";
+import { memo } from "react";
 
 const Header = ({ title, shouldShowBackButton = true, actionBlock}) => {
   const history = useHistory();
@@ -47,4 +48,4 @@ const Header = ({ title, shouldShowBackButton = true, actionBlock}) => {
   );
 };
 
-export default Header;
+export default memo(Header);

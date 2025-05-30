@@ -5,6 +5,7 @@ import useCartItemsStore from "stores/useCartItemsStore";
 import { Button } from "neetoui";
 import routes from "routes";
 import { useTranslation,Trans } from "react-i18next";
+import { memo } from "react";
 
 const PriceCard = ({ totalMrp, totalOfferPrice }) => {
   const { t } = useTranslation();
@@ -58,4 +59,4 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
     </div>
   );
 };
-export default PriceCard;
+export default memo(PriceCard);
