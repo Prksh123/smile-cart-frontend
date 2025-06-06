@@ -33,7 +33,7 @@ const Items = ({ isSubmitDisabled }) => {
           totalPrice={totalCheckoutPrice}
         />
       </div>
-       <div className="mt-auto flex justify-center">
+      <div className="mt-auto flex justify-center">
         <Button
           className="bg-neutral-800 w-1/3 justify-center"
           disabled={isSubmitDisabled}

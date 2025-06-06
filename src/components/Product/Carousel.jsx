@@ -1,11 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, memo } from "react";
+
 import { useShowProduct } from "hooks/reactQuery/useProductsApi";
-import { useParams } from "react-router-dom";
-import { append } from "ramda";
-import classNames from "classnames";
 import { Left, Right } from "neetoicons";
 import { Button } from "neetoui";
-import { memo } from "react";
+import { append } from "ramda";
+import { useParams } from "react-router-dom";
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -68,10 +67,9 @@ const Carousel = () => {
         {imageUrls.map((_, index) => (
           <span
             key={index}
-            className={classNames(
-              "neeto-ui-border-black neeto-ui-rounded-full inline-block h-3 w-3 cursor-pointer border transition-colors duration-300",
-              { "neeto-ui-bg-black": index === currentIndex }
-            )}
+            className={`neeto-ui-border-black neeto-ui-rounded-full h-3 w-3 cursor-pointer border ${
+              currentIndex === index ? "neeto-ui-bg-black" : ""
+            }`}
             onClick={() => {
               setCurrentIndex(index);
               resetTimer();

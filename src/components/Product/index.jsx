@@ -1,36 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import productsApi from "apis/products";
-import { Typography,Button } from "neetoui";
-import { isNotNil, append } from "ramda";
-import Carousel from "./Carousel";
+import React from "react";
+
 import { Header, PageNotFound, PageLoader } from "components/commons";
-import useSelectedQuantity from "hooks/useSelectedQuantity";
 import AddToCart from "components/commons/AddToCart";
-import routes from "routes";
 import { useShowProduct } from "hooks/reactQuery/useProductsApi";
+import useSelectedQuantity from "hooks/useSelectedQuantity";
+import { Button, Typography } from "neetoui";
+import { isNotNil } from "ramda";
+import { useParams } from "react-router-dom";
+import routes from "routes";
+
+import Carousel from "./Carousel";
 
 const Product = () => {
   const { slug } = useParams();
-  // const [product, setProduct] = useState({});
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [isError, setIsError] = useState(false);
+
   const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
   const { data: product = {}, isLoading, isError } = useShowProduct(slug);
-
-  // const fetchProduct = async () => {
-  //   try {
-  //     const product = await productsApi.show(slug);
-  //     setProduct(product);
-  //   } catch (error) {
-  //     setIsError(true);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
-  //  useEffect(() => {
-  //   fetchProduct();
-  // }, [slug]);
 
   if (isLoading) {
     return <PageLoader />;
@@ -40,13 +25,21 @@ const Product = () => {
     return <PageNotFound />;
   }
 
-  const { name, description, mrp, offerPrice, imageUrls, imageUrl,availableQuantity } = product;
+  const {
+    name,
+    description,
+    mrp,
+    offerPrice,
+    imageUrls,
+    imageUrl,
+    availableQuantity,
+  } = product;
   const totalDiscounts = mrp - offerPrice;
   const discountPercentage = ((totalDiscounts / mrp) * 100).toFixed(1);
 
   return (
     <>
-    <Header title={name} />
+      <Header title={name} />
       <div className="mt-6 flex gap-4">
         <div className="w-2/5">
           <div className="flex justify-center gap-16">

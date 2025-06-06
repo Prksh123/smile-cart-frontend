@@ -1,11 +1,11 @@
-import classNames from "classnames";
-import { Typography } from "neetoui";
-import { gt, keys } from "ramda";
-import useCartItemsStore from "stores/useCartItemsStore";
-import { Button } from "neetoui";
-import routes from "routes";
-import { useTranslation,Trans } from "react-i18next";
 import { memo } from "react";
+
+import classNames from "classnames";
+import { Typography, Button } from "neetoui";
+import { gt, keys } from "ramda";
+import { useTranslation, Trans } from "react-i18next";
+import routes from "routes";
+import useCartItemsStore from "stores/useCartItemsStore";
 
 const PriceCard = ({ totalMrp, totalOfferPrice }) => {
   const { t } = useTranslation();
@@ -23,29 +23,29 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
         })}
       >
         <Trans
-          components={{ typography : <typography/> }}
+          components={{ typography: <typography /> }}
           i18nKey="totalMrp"
-          values={{ mrp :  totalMrp}}
+          values={{ mrp: totalMrp }}
         />
       </Typography>
       {isDiscountPresent && (
         <>
           <Typography className="flex justify-between text-green-700">
-          <Trans
-          components={{ span: <span /> }}
-          i18nKey="totalDiscounts"
-          values={{ discounts: totalDiscounts, discountPercentage }}
-        />
+            <Trans
+              components={{ span: <span /> }}
+              i18nKey="totalDiscounts"
+              values={{ discounts: totalDiscounts, discountPercentage }}
+            />
           </Typography>
           <Typography className="flex justify-between">
-          <Trans
-          components={{ span: <span /> }}
-          i18nKey="offerPrice"
-          values={{ offerPrice: totalOfferPrice }}
-        />
+            <Trans
+              components={{ span: <span /> }}
+              i18nKey="offerPrice"
+              values={{ offerPrice: totalOfferPrice }}
+            />
           </Typography>
           <span className="neeto-ui-text-gray-500 text-sm">
-          {t("itemCount", { count: itemsCount })}
+            {t("itemCount", { count: itemsCount })}
           </span>
         </>
       )}
@@ -53,7 +53,7 @@ const PriceCard = ({ totalMrp, totalOfferPrice }) => {
         <Button
           className="bg-neutral-800"
           label={t("buyNow")}
-          to = {routes.checkout}
+          to={routes.checkout}
         />
       </div>
     </div>

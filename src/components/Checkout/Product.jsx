@@ -2,7 +2,7 @@ import { Typography, Tag } from "neetoui";
 import useCartItemsStore from "stores/useCartItemsStore";
 
 const Product = ({ name, imageUrl, offerPrice, slug }) => {
- const selectedQuantity = useCartItemsStore(state => state.cartItems[slug]);
+  const selectedQuantity = useCartItemsStore(state => state.cartItems[slug]);
 
   return (
     <div className="mt-3 flex">

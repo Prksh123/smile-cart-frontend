@@ -1,9 +1,8 @@
 import axios from "axios";
-import { keysToCamelCase } from "neetocist";
-import { serializeKeysToSnakeCase } from "neetocist";
-import { evolve } from "ramda";
 import { t } from "i18next";
+import { keysToCamelCase, serializeKeysToSnakeCase } from "neetocist";
 import { Toastr } from "neetoui";
+import { evolve } from "ramda";
 
 const shouldShowToastr = response =>
   typeof response === "object" && response?.noticeCode;

@@ -3,4 +3,4 @@ import PageLoader from "./PageLoader";
 import PageNotFound from "./PageNotFound";
 import TooltipWrapper from "./TooltipWrapper";
 
-export { Header, PageNotFound, PageLoader,TooltipWrapper };
+export { Header, PageNotFound, PageLoader, TooltipWrapper };

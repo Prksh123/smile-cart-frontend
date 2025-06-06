@@ -1,14 +1,14 @@
 {
-    "helloWorld": "Hello World",
-    "buyNow": "Buy now",
-    "itemCount_one": "({{count}} item)",
-    "itemCount_other": "({{count}} items)",
-    "totalMrp": "Total MRP: <typography>${{mrp}}</typography>",
-    "totalDiscounts": "Total discounts: <span>${{discounts}} ({{discountPercentage}}%)</span>",
-    "offerPrice": "Total offer price: <span>${{offerPrice}}</span>",
-    "title": "Smile Cart",
-    "pageTitle": "{{title}} | Smile Cart",
-    "cart": {
+  "helloWorld": "Hello World",
+  "buyNow": "Buy now",
+  "itemCount_one": "({{count}} item)",
+  "itemCount_other": "({{count}} items)",
+  "totalMrp": "Total MRP: <typography>${{mrp}}</typography>",
+  "totalDiscounts": "Total discounts: <span>${{discounts}} ({{discountPercentage}}%)</span>",
+  "offerPrice": "Total offer price: <span>${{offerPrice}}</span>",
+  "title": "Smile Cart",
+  "pageTitle": "{{title}} | Smile Cart",
+  "cart": {
     "title": "My cart"
   },
   "checkout": "Checkout",
@@ -44,15 +44,15 @@
     "zipCodeRequired": "Zip code is required",
     "emailInvalid": "Email address is invalid"
   },
-   "error": {
+  "error": {
     "noInternetConnection": "No Internet Connection",
     "networkError": "Network Error"
   },
-   "order": {
+  "order": {
     "successfullyPlaced": "Order has been successfully placed"
   },
-   "subtotal": "Subtotal <span>${{totalPrice}}</span>",
+  "subtotal": "Subtotal <span>${{totalPrice}}</span>",
   "totalPayablePrice": "Total Payable <span>${{totalPrice}}</span>",
   "deliveryCharges": "Delivery charges <span>FREE</span>",
-    "saveInformationForNextTime": "Save this information for next time"
+  "saveInformationForNextTime": "Save this information for next time"
 }

@@ -1,15 +1,11 @@
-import { Button } from "neetoui";
-import { isNil, paths } from "ramda";
-import useCartItemsStore from "stores/useCartItemsStore";
-import { shallow } from "zustand/shallow";
 import useSelectedQuantity from "hooks/useSelectedQuantity";
-import { useShowProduct } from "hooks/reactQuery/useProductsApi";
+import { Button } from "neetoui";
+import { isNil } from "ramda";
+
 import ProductQuantity from "./ProductQuantity";
 
 const AddToCart = ({ slug }) => {
-    const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
-    const { data: product = {} } = useShowProduct(slug);
-    const { availableQuantity } = product;
+  const { selectedQuantity, setSelectedQuantity } = useSelectedQuantity(slug);
 
   const handleClick = e => {
     e.stopPropagation();

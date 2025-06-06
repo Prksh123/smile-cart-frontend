@@ -1,12 +1,10 @@
+import { React, useState, memo } from "react";
+
 import ProductQuantity from "components/commons/ProductQuantity";
-import { Typography } from "neetoui";
-import { useState } from "react";
-import { Alert } from "neetoui";
-import { NoData } from "neetoui";
 import { Delete } from "neetoicons";
+import { Typography, Alert } from "neetoui";
 import { prop } from "ramda";
 import useCartItemsStore from "stores/useCartItemsStore";
-import { memo } from "react";
 
 const ProductCard = ({
   slug,
@@ -16,27 +14,27 @@ const ProductCard = ({
   name,
   availableQuantity,
 }) => {
-    const removeCartItem = useCartItemsStore(prop("removeCartItem"));
-    const [shouldShowDeleteAlert, setShouldShowDeleteAlert] = useState(false);
-    return(
-  <div className="neeto-ui-rounded neeto-ui-border-black border p-2">
-    <div className="flex w-full items-center space-x-5">
-      <img alt={name} height={80} src={imageUrl} width={80} />
-      <div className="flex-grow space-y-1">
-        <Typography className="mb-2" style="h4" weight="bold">
-          {name}
-        </Typography>
-        <Typography style="body2">MRP: ${mrp}</Typography>
-        <Typography style="body2">Offer price: ${offerPrice}</Typography>
-      </div>
+  const removeCartItem = useCartItemsStore(prop("removeCartItem"));
+  const [shouldShowDeleteAlert, setShouldShowDeleteAlert] = useState(false);
 
-      <div className="flex items-center space-x-2">
-      <ProductQuantity {...{ availableQuantity, slug }} />
+  return (
+    <div className="neeto-ui-rounded neeto-ui-border-black border p-2">
+      <div className="flex w-full items-center space-x-5">
+        <img alt={name} height={80} src={imageUrl} width={80} />
+        <div className="flex-grow space-y-1">
+          <Typography className="mb-2" style="h4" weight="bold">
+            {name}
+          </Typography>
+          <Typography style="body2">MRP: ${mrp}</Typography>
+          <Typography style="body2">Offer price: ${offerPrice}</Typography>
+        </div>
+        <div className="flex items-center space-x-2">
+          <ProductQuantity {...{ availableQuantity, slug }} />
           <Delete
             className="cursor-pointer"
             onClick={() => setShouldShowDeleteAlert(true)}
           />
-           <Alert
+          <Alert
             isOpen={shouldShowDeleteAlert}
             submitButtonLabel="Yes, remove"
             title="Remove item?"
@@ -53,8 +51,9 @@ const ProductCard = ({
             }}
           />
         </div>
+      </div>
     </div>
-  </div>
-)};
+  );
+};
 
 export default memo(ProductCard);
